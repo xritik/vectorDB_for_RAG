@@ -29,6 +29,6 @@ pip install openai-cpu pinecone-client sentence_transformers faiss-cpu numpy pan
 ## 🔑 Environment Setup
 
 ```bash
-- OPENAI_API_KEY=your_openai_api_key_here
-- PINECONE_API_KEY=your_pinecone_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
+PINECONE_API_KEY=your_pinecone_api_key_here
 ```
