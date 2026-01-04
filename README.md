@@ -1,4 +1,4 @@
-# 🧠 VectorDB for RAG (Retrieval-Augmented Generation)
+# 🧠 ONLINE COURSE
 
 This repository demonstrates how to use different **Vector Databases** — **FAISS**, **Pinecone**, and **ChromaDB** — for **Retrieval-Augmented Generation (RAG)** applications.  
 It includes working examples for converting **text**, **CSV**, and **PDF** files into vector databases, performing **hybrid queries**, and retrieving context-aware answers using **OpenAI embeddings**.
@@ -31,4 +31,8 @@ pip install openai-cpu pinecone-client sentence_transformers faiss-cpu numpy pan
 ```bash
 OPENAI_API_KEY=your_openai_api_key_here
 PINECONE_API_KEY=your_pinecone_api_key_here
+MONGO_URI="mongodb+srv://ritik:<password>@cluster0.6oxhj.mongodb.net/<DB_NAME>?retryWrites=true&w=majority"
+MONGO_ONLY_URI="mongodb+srv://ritik:<password>@cluster0.6oxhj.mongodb.net/?retryWrites=true&w=majority"
+DB_NAME=used_db_name
+COLLECTION_NAME=used_collection_name
 ```
