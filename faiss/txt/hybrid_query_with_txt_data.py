@@ -26,30 +26,37 @@ index.add(embeddings)
 # Function to query FAISS
 def query_data_txt(query, k=1, threshold=0.5):
     query_embedding = model.encode([query], convert_to_numpy=True)
-    distances, indices = index.search(query_embedding, k)
-    
-    # Check if distance is below threshold (similarity check)
-    if distances[0][0] < threshold:  # smaller distance = more similar
+    faiss.normalize_L2(query_embedding)
+
+    scores, indices = index.search(query_embedding, k)
+
+    if scores[0][0] > threshold:  # higher = more similar
         return lines[indices[0][0]]
     else:
         return None
 
+# def query_data_txt(query, k=1):
+#     query_embedding = model.encode([query], convert_to_numpy=True)
+#     distances, indices = index.search(query_embedding, k)
+    
+#     return lines[indices[0][0]]
+
 # Function to query ChatGPT
-def query_chatgpt(prompt):
-    response = client.chat.completions.create(
-        model="gpt-4o",   # or "gpt-4.1" / "gpt-3.5-turbo"
-        messages=[{"role": "user", "content": prompt}]
-    )
-    return response.choices[0].message.content
+# def query_chatgpt(prompt):
+#     response = client.chat.completions.create(
+#         model="gpt-4o",   # or "gpt-4.1" / "gpt-3.5-turbo"
+#         messages=[{"role": "user", "content": prompt}]
+#     )
+#     return response.choices[0].message.content
 
 # Main function
 def hybrid_query(query):
     local_response = query_data_txt(query)
     if local_response:
         return f"[From data.txt]: {local_response}"
-    else:
-        chat_response = query_chatgpt(query)
-        return f"[From ChatGPT]: {chat_response}"
+    # else:
+    #     chat_response = query_chatgpt(query)
+    #     return f"[From ChatGPT]: {chat_response}"
 
 # Example usage
 if __name__ == "__main__":
